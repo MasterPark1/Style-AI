@@ -1,0 +1,315 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>STYLIST AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "primary-container": "#1c1b1b",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-secondary-container": "#5f6161",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary-fixed": "#e5e2e1",
+                        "surface": "#fbf9f9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "surface-dim": "#dbdad9",
+                        "background": "#fbf9f9",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#735c00",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#5d5f5f",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#474746",
+                        "surface-container-high": "#e9e8e7",
+                        "on-surface-variant": "#444748",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "on-primary-container": "#858383",
+                        "surface-container-highest": "#e4e2e2",
+                        "inverse-surface": "#303031",
+                        "surface-bright": "#fbf9f9",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container-low": "#f5f3f3",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container": "#efeded",
+                        "tertiary-container": "#cca730",
+                        "secondary-container": "#dcdddd",
+                        "outline-variant": "#c4c7c7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "button": ["Inter"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[style*="FILL' 1"] {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Subtle reveal animation for content */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant flat no shadows transition-all duration-300" id="top-nav">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-[1280px] mx-auto">
+<!-- Leading: Avatar/Menu -->
+<button aria-label="Menu" class="md:hidden text-primary p-2 -ml-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center group cursor-pointer">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant group-hover:opacity-80 transition-opacity" data-alt="A high-end, minimalist portrait of a confident fashion model looking slightly away from the camera. Black and white aesthetic with sharp contrast. Professional studio lighting. Clean, light background. Used as a sophisticated user avatar profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa58g85pEkskbIpV_JVm16eNuhTTO-hijgW7zxW9Gy33IQOLJUPuZa48mMrVArj_613lHac1G7ciKdez5Rt-MRrLUicIaXRIvpwh1FTXNeRIm3Jhw6Jk5hjcDcr7yTya8YoR7Uncfuxwf_H3vH6-P-4Ncm9Xof_ogOvz2ashDlfWuySeSRxurnGtbMPBf8qPyoJ64e7Mb58Bu7SMY5NMByB8FW3KVGEJXRdJ0l574uPzB_pk2_ke7G">
+</div>
+<!-- Brand Logo -->
+<div class="absolute left-1/2 -translate-x-1/2">
+<h1 class="font-headline-md text-headline-md tracking-tighter text-primary">STYLIST AI</h1>
+</div>
+<!-- Desktop Nav Cluster -->
+<nav class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 mt-16 font-label-caps text-label-caps text-secondary opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 bg-surface/95 backdrop-blur px-8 py-4 rounded-b-xl border-x border-b border-outline-variant">
+<a class="text-primary border-b border-primary pb-1" href="#">HOME</a>
+<a class="hover:opacity-80 transition-opacity" href="#">CLOSET</a>
+<a class="hover:opacity-80 transition-opacity" href="#">DISCOVER</a>
+<a class="hover:opacity-80 transition-opacity" href="#">PROFILE</a>
+</nav>
+<!-- Trailing: Settings -->
+<button aria-label="Settings" class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform p-2 -mr-2">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col pb-safe md:pb-0">
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center justify-center pt-8 pb-16 px-margin-mobile md:px-margin-desktop">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full relative">
+<img class="w-full h-full object-cover object-center grayscale-[0.2] opacity-90" alt="High-end fashion photography for a luxury personal stylist app. A stylish person wearing a chic casual outfit: a premium oversized white t-shirt tucked into relaxed-fit light grey trousers, paired with clean minimalist sneakers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjsGd00DOHdK6YsQuLcmaTAzvamSUR3OrYyQOvTDb82S29DgY7XRg8PU9uvwjT9f0bYESSoLBzOgDFvOIYe1BP9XAfaxHe7UqUkBB55Zw55STMOMz1TqxL2tcFvZHxu1NSVWDzEVzKDbEwwLFXnRWx3cI8_EKmRPb36lv7A13TssqUn985NUNkVaPDAgtyjsbObrFHJzwdNJ7k_HmEsIbY0fYgXGTamXjDcbyVJ-yWTHNy7hb3ljtd">
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80"></div>
+</div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto w-full flex flex-col items-center text-center reveal-up active">
+<div class="inline-flex items-center justify-center px-4 py-2 border border-outline-variant rounded-full mb-8 bg-surface/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px] mr-2 text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-label-caps text-on-surface">POWERED BY AI</span>
+</div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary max-w-3xl mb-6">
+                    Your Personal <br class="md:hidden"><span class="italic text-tertiary-container">AI Stylist</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-10 leading-relaxed">
+                    Discover a curated wardrobe tailored to your unique measurements, lifestyle, and aesthetic preferences. Minimalist luxury, elevated by artificial intelligence.
+                </p>
+<button class="bg-primary text-on-primary font-button text-button px-8 py-4 rounded-none hover:bg-inverse-surface transition-colors active:scale-[0.98] flex items-center gap-3">
+                    Find My Style
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface max-w-container-max mx-auto w-full">
+<div class="text-center mb-16 reveal-up active">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Curated Perfection</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Our AI analyzes thousands of designer collections to craft looks that align flawlessly with your profile.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit md:gap-gutter auto-rows-[300px]">
+<!-- Large Card (Span 2) -->
+<div class="md:col-span-2 relative group overflow-hidden border border-outline-variant bg-surface-container-lowest reveal-up active">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80" data-alt="Close up detail shot of premium, textured luxury fabrics. Cashmere, silk, and heavy linen layered gracefully. A subtle, natural color palette of creams, warm greys, and muted charcoals. Soft, diffused professional studio lighting highlighting the material quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8zjiR6Gb8AZw7zpnQXSMRLVZjAmZFS8d2nn2tBj6ZO8uAYEu_RDpW_wL5b7rU0qq1WM-nK_eD2Vpwdv0LidYiD4dp74lZI-O92WaXk33L6J0UI2LyL7EzG5gGEnUr5bbG_toxVBQdu9RJbGWHf49AfrsAMg4k4j8IIB5j3KS0CqTsznkNx3Ob59XpsizA4AnGsE7tA0nB0dMfrTIoiySn57_Gtm-o9qfMpTYkrCn3jpbRENtSFrZw">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+<span class="font-label-caps text-label-caps text-surface-container-high mb-2">WARDROBE ANALYSIS</span>
+<h4 class="font-headline-md text-headline-md text-on-primary mb-2">Intelligent Closet Integration</h4>
+<p class="font-body-md text-body-md text-surface-variant max-w-md hidden md:block">Upload your existing pieces and let our algorithm build cohesive capsules for every occasion.</p>
+</div>
+</div>
+<!-- Small Card 1 -->
+<div class="relative group overflow-hidden border border-outline-variant bg-surface-container-lowest flex flex-col justify-between p-8 reveal-up active" style="transition-delay: 100ms;">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-[32px] font-light">straighten</span>
+<span class="px-3 py-1 border border-primary text-primary font-label-caps text-[10px]">PRECISE</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Perfect Fit</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">3D body scanning technology ensures every recommended piece flatters your exact silhouette.</p>
+</div>
+</div>
+<!-- Small Card 2 -->
+<div class="relative group overflow-hidden border border-outline-variant bg-surface-container-lowest flex flex-col justify-between p-8 reveal-up active" style="transition-delay: 200ms;">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-[32px] font-light">auto_awesome</span>
+<span class="px-3 py-1 border border-primary text-primary font-label-caps text-[10px]">DAILY</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Daily Brief</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Wake up to customized outfit suggestions based on your schedule, location, and the weather.</p>
+</div>
+</div>
+<!-- Medium Card (Span 2) -->
+<div class="md:col-span-2 relative group overflow-hidden border border-outline-variant bg-surface-container-lowest flex items-center p-8 md:p-12 reveal-up active" style="transition-delay: 300ms;">
+<div class="w-full md:w-1/2 z-10 pr-4">
+<h4 class="font-headline-md text-headline-md text-primary mb-4">Exclusive Access</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Unlock early access to limited capsule collections from emerging minimalist designers.</p>
+<button class="text-primary font-button text-button border-b border-primary pb-1 hover:text-tertiary-container hover:border-tertiary-container transition-colors">
+                            Explore Premium
+                        </button>
+</div>
+<div class="absolute md:relative inset-0 md:inset-auto md:w-1/2 h-full z-0 opacity-10 md:opacity-100">
+<img class="w-full h-full object-cover rounded-none" data-alt="Minimalist still life of a sleek, modern smartphone resting on a marble surface alongside a pair of premium leather gloves and a subtle designer watch. High-key lighting, emphasizing luxury, technology, and exclusivity. Very clean and chic composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCy8G7TDgqql1uSpaXS0Q1w2vBPiyDupeao4hsmYw_IvYDK-6Ac3JALt7DB4JsDRyDbZeqRTA3owQqCyEAaxyJEVY1stFUmUCz9PQSG6fBP1zvrPjatEHQLubgZONFWjq9fu0SxphRPZ55aSYduq00afC2eZUzea1b6s8VHtF3msbWAN27uK1fj55EkFP6a0755l94jMc0JBhZ0kZrzP9HO2IMd70udjh1Kx1x6CCEyO-WxuoRLMNJ">
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant h-20 px-4 pb-safe flex justify-around items-center flat no shadows">
+<!-- HOME (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 h-full w-full" href="#">
+<span class="material-symbols-outlined mb-1" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px]">HOME</span>
+</a>
+<!-- CLOSET (Inactive) -->
+<a class="flex flex-col items-center justify-center text-secondary pt-2 h-full w-full hover:text-primary transition-colors active:opacity-70" href="#">
+<span class="material-symbols-outlined mb-1">checkroom</span>
+<span class="font-label-caps text-[10px]">CLOSET</span>
+</a>
+<!-- DISCOVER (Inactive) -->
+<a class="flex flex-col items-center justify-center text-secondary pt-2 h-full w-full hover:text-primary transition-colors active:opacity-70" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-label-caps text-[10px]">DISCOVER</span>
+</a>
+<!-- PROFILE (Inactive) -->
+<a class="flex flex-col items-center justify-center text-secondary pt-2 h-full w-full hover:text-primary transition-colors active:opacity-70" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-[10px]">PROFILE</span>
+</a>
+</nav>
+<script>
+        // Simple scroll reveal animation script
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal-up');
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+            
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Top nav shadow on scroll
+            const topNav = document.getElementById('top-nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    topNav.classList.add('shadow-sm');
+                    topNav.classList.remove('border-outline-variant');
+                    topNav.classList.add('border-transparent');
+                } else {
+                    topNav.classList.remove('shadow-sm');
+                    topNav.classList.add('border-outline-variant');
+                    topNav.classList.remove('border-transparent');
+                }
+            });
+            
+            // Trigger initial reveal immediately for elements in viewport on load
+            setTimeout(() => {
+                revealElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < window.innerHeight) {
+                        el.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+
+
+</body></html>

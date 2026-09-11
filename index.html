@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STYLIST AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fbf9f9;
+        --bg-2: #f5f3f3;
+        --panel: #f2f0f0;
+        --panel-strong: #e6e3e2;
+        --line: #d8d4d2;
+        --ink: #1b1c1c;
+        --muted: #555a5d;
+        --soft: #6d6f70;
+        --gold: #c5a76a;
+        --gold-deep: #9e7d3a;
+        --shadow: rgba(0, 0, 0, 0.06);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 480px;
+        min-height: 100vh;
+        background: var(--bg);
+        position: relative;
+      }
+
+      .screen {
+        display: none;
+        min-height: 100vh;
+        padding: 20px 24px 110px;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      .topbar {
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        letter-spacing: -0.06em;
+        font-weight: 600;
+      }
+
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        font-size: 24px;
+      }
+
+      .hero {
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.02));
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 440px;
+        margin-top: 10px;
+        border-radius: 0;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.06)),
+          url('homefirst.png') center/cover no-repeat;
+      }
+
+      .hero-visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(251,249,249,0.82) 0%, rgba(251,249,249,0.18) 55%, rgba(251,249,249,0.68) 100%);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        padding: 18px 10px 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        border: 1px solid rgba(27, 28, 28, 0.38);
+        background: rgba(255,255,255,0.4);
+        backdrop-filter: blur(3px);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 18px;
+      }
+
+      h1, h2, h3, h4 {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+        font-weight: 500;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+        margin-bottom: 12px;
+      }
+
+      .hero h1 .em {
+        display: block;
+        font-style: italic;
+        color: var(--gold-deep);
+      }
+
+      .lead {
+        font-size: 1.05rem;
+        line-height: 1.55;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .primary-btn {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        padding: 18px 26px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 26px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .primary-btn:hover { opacity: 0.97; }
+      .primary-btn:active { transform: scale(0.99); }
+
+      .section-title {
+        font-size: clamp(2.6rem, 9vw, 4.2rem);
+        margin-top: 18px;
+        margin-bottom: 10px;
+      }
+
+      .feature-box {
+        padding: 20px 0 0;
+      }
+
+      .feature-box h3 {
+        font-size: clamp(2.3rem, 6vw, 3.2rem);
+        margin-bottom: 4px;
+      }
+
+      .feature-box p {
+        margin: 0;
+        color: var(--soft);
+        font-size: 1.05rem;
+        line-height: 1.5;
+      }
+
+      .feature-image {
+        margin-top: 18px;
+        height: 210px;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.06)),
+          url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        border: 1px solid var(--line);
+      }
+
+      .mini-cards {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .mini-card {
+        border: 1px solid var(--line);
+        padding: 18px 18px 14px;
+        background: rgba(255,255,255,0.2);
+      }
+
+      .mini-card .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .mini-card .tag {
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .mini-card h4 {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+        margin-bottom: 8px;
+      }
+
+      .mini-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+        font-size: 0.96rem;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(100%, 480px);
+        background: rgba(251,249,249,0.95);
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 10px 12px 16px;
+        z-index: 20;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: var(--soft);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .nav-item .material-symbols-outlined {
+        font-size: 20px;
+      }
+
+      .nav-item.active {
+        color: var(--ink);
+      }
+
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+
+      /* Profile screen */
+      .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2px 16px;
+      }
+
+      .profile-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        letter-spacing: -0.06em;
+      }
+
+      .profile-title {
+        font-size: clamp(3.2rem, 10vw, 5.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+        margin: 8px 0 20px;
+      }
+
+      .profile-copy {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        color: var(--ink);
+        line-height: 1.45;
+        font-family: "Playfair Display", serif;
+        letter-spacing: -0.04em;
+        margin-bottom: 26px;
+      }
+
+      .field-group {
+        margin-top: 10px;
+      }
+
+      .label {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--soft);
+        margin-bottom: 10px;
+      }
+
+      .measure-row {
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      .measure-row input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.1rem, 7vw, 3.2rem);
+        letter-spacing: -0.06em;
+        color: var(--ink);
+        padding: 0;
+      }
+
+      .measure-row input::placeholder { color: rgba(27,28,28,0.35); }
+
+      .unit {
+        color: var(--soft);
+        font-size: 1.05rem;
+        padding-bottom: 10px;
+      }
+
+      .upload-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.18);
+        min-height: 280px;
+        margin-top: 14px;
+        text-align: center;
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .upload-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.01) 25%, rgba(0,0,0,0.03) 50%, rgba(0,0,0,0.01) 75%);
+        background-size: 12px 12px;
+      }
+
+      .upload-box > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .upload-box .camera {
+        font-size: 54px;
+        color: rgba(27, 28, 28, 0.45);
+        margin-bottom: 18px;
+      }
+
+      .upload-box h3 {
+        font-size: clamp(2.2rem, 7vw, 3rem);
+        margin: 0 0 12px;
+      }
+
+      .upload-box p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+        font-size: 1.04rem;
+        max-width: 300px;
+      }
+
+      .action-row {
+        margin-top: 26px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .save-btn {
+        width: 100%;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        padding: 18px 22px;
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* Analysis screen */
+      .analysis .analysis-visual {
+        min-height: 260px;
+        border: 1px solid var(--line);
+        background: rgba(239, 239, 239, 0.85);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .analysis .analysis-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(0,0,0,0.03));
+      }
+
+      .analysis .scan-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, rgba(27,28,28,0.6), transparent);
+        animation: scan 3s infinite ease-in-out;
+      }
+
+      @keyframes scan {
+        0% { transform: translateY(-10px); opacity: 0; }
+        15% { opacity: 1; }
+        70% { opacity: 1; }
+        100% { transform: translateY(260px); opacity: 0; }
+      }
+
+      .analysis-title {
+        font-size: clamp(3.3rem, 9vw, 5.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        margin-top: 28px;
+      }
+
+      .analysis-sub {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: clamp(1.45rem, 4vw, 2.3rem);
+        font-family: "Playfair Display", serif;
+        letter-spacing: -0.04em;
+      }
+
+      .progress {
+        margin-top: 38px;
+        height: 2px;
+        background: var(--line);
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 0;
+        background: var(--ink);
+        transition: width 0.18s ease;
+      }
+
+      /* Result screen */
+      .result .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+
+      .profile-bubble {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80') center/cover no-repeat;
+        border: 1px solid var(--line);
+      }
+
+      .result-title {
+        font-size: clamp(3.1rem, 8vw, 4.8rem);
+        margin-top: 0;
+        margin-bottom: 10px;
+        line-height: 0.95;
+      }
+
+      .result-copy {
+        font-size: 1.06rem;
+        line-height: 1.5;
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+
+      .style-panel {
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.2);
+        padding: 18px 18px 14px;
+      }
+
+      .tagline {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: var(--soft);
+      }
+
+      .style-panel h3 {
+        font-size: clamp(2.4rem, 7vw, 3.2rem);
+        margin-bottom: 8px;
+      }
+
+      .style-panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        padding: 7px 10px;
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+
+      .look-card {
+        margin-top: 26px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.2);
+      }
+
+      .look-visual {
+        height: 290px;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.05)),
+          url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      }
+
+      .look-content {
+        padding: 18px 18px 20px;
+      }
+
+      .look-content h4 {
+        font-size: clamp(2.2rem, 6vw, 3rem);
+        margin-bottom: 8px;
+      }
+
+      .look-content .subhead {
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--soft);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .look-content p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.52;
+      }
+
+      .save-look {
+        width: 100%;
+        margin-top: 18px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: white;
+        padding: 14px 18px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .result .bottom-nav {
+        display: grid;
+      }
+
+      @media (min-width: 700px) {
+        .app {
+          max-width: 820px;
+          padding-bottom: 30px;
+        }
+
+        .screen {
+          padding-left: 52px;
+          padding-right: 52px;
+        }
+
+        .hero-visual {
+          min-height: 500px;
+        }
+
+        .profile-title {
+          max-width: 560px;
+        }
+
+        .upload-box {
+          min-height: 360px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <section id="home-screen" class="screen hero active">
+        <header class="topbar">
+          <button class="icon-btn" aria-label="Menu">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="brand">STYLIST AI</div>
+          <button class="icon-btn" aria-label="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </header>
+
+        <div class="hero-visual">
+          <div class="hero-copy">
+            <div class="badge">Powered by AI</div>
+            <h1>Your Personal <span class="em">AI Stylist</span></h1>
+            <p class="lead">
+              Discover a curated wardrobe tailored to your unique measurements,
+              lifestyle, and aesthetic preferences. Minimalist luxury, elevated by
+              artificial intelligence.
+            </p>
+            <button class="primary-btn" id="find-style-btn">
+              Find My Style <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <h3 class="section-title">Curated Perfection</h3>
+          <p>Our AI analyzes thousands of designer collections to craft looks that align flawlessly with your profile.</p>
+
+          <div class="feature-image"></div>
+
+          <div class="mini-cards">
+            <div class="mini-card">
+              <div class="head">
+                <span class="material-symbols-outlined">straighten</span>
+                <span class="tag">Precise</span>
+              </div>
+              <h4>Perfect Fit</h4>
+              <p>3D body scanning technology ensures every recommended piece flatters your exact silhouette.</p>
+            </div>
+
+            <div class="mini-card">
+              <div class="head">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <span class="tag">Daily</span>
+              </div>
+              <h4>Daily Brief</h4>
+              <p>Wake up to customized outfit suggestions based on your schedule, location, and the weather.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-screen" class="screen">
+        <header class="profile-header">
+          <button class="icon-btn back" aria-label="Back">
+            <span class="material-symbols-outlined">arrow_back</span>
+          </button>
+          <div class="profile-brand">STYLIST AI</div>
+          <div style="width: 32px;"></div>
+        </header>
+
+        <h1 class="profile-title">Define Your Silhouette</h1>
+        <p class="profile-copy">
+          To curate pieces that drape perfectly and complement your unique
+          proportions, we require a few foundational measurements. Accuracy
+          ensures a flawless fit.
+        </p>
+
+        <div class="field-group">
+          <label class="label" for="height">Height</label>
+          <div class="measure-row">
+            <input id="height" type="number" placeholder="0" min="0" />
+            <span class="unit">cm</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="label" for="weight">Weight</label>
+          <div class="measure-row">
+            <input id="weight" type="number" placeholder="0" min="0" />
+            <span class="unit">kg</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="label">Reference Image</label>
+          <label class="upload-box" for="photo-upload">
+            <div>
+              <div class="material-symbols-outlined camera">photo_camera</div>
+              <h3>Upload a Full-Body Portrait</h3>
+              <p>Drag and drop your image here, or click to browse. Neutral background preferred.</p>
+            </div>
+            <input id="photo-upload" type="file" accept="image/*" style="display:none;" />
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button class="save-btn" id="save-continue-btn">Save &amp; Continue</button>
+        </div>
+      </section>
+
+      <section id="analyzing-screen" class="screen analysis">
+        <header class="topbar" style="justify-content:center;">
+          <div class="brand">STYLIST AI</div>
+        </header>
+
+        <div class="analysis-visual">
+          <div class="scan-line"></div>
+        </div>
+
+        <h2 class="analysis-title">Analyzing your unique silhouette...</h2>
+        <div class="analysis-sub">Curating high-fashion matches...</div>
+
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </section>
+
+      <section id="result-screen" class="screen result">
+        <header class="header-row">
+          <div class="profile-bubble"></div>
+          <div class="brand" style="font-size: 2.25rem;">STYLIST AI</div>
+          <button class="icon-btn" aria-label="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </header>
+
+        <h1 class="result-title">Your Style Signature</h1>
+        <p class="result-copy">
+          Based on your recent aesthetic scan and precise body measurements, we
+          have curated a selection of looks that define your unique sartorial identity.
+        </p>
+
+        <div class="style-panel">
+          <span class="tagline">Style ID</span>
+          <h3>Classic Minimalist</h3>
+          <p>
+            An appreciation for clean lines, neutral palettes, and impeccable tailoring.
+            Your wardrobe favors structured silhouettes and high-quality essential pieces
+            that transcend fleeting trends.
+          </p>
+          <div class="chip-group">
+            <span class="chip">Structured</span>
+            <span class="chip">Monochrome</span>
+            <span class="chip">Tailored</span>
+          </div>
+        </div>
+
+        <div class="look-card">
+          <div class="look-visual"></div>
+          <div class="look-content">
+            <h4>The Urban Monolith</h4>
+            <div class="subhead">Why it works</div>
+            <p>
+              The strong shoulder line balances your proportions perfectly, while the
+              monochromatic base creates an unbroken vertical line that subtly elongates the silhouette.
+            </p>
+            <button class="save-look">Save Look</button>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <a href="#" class="nav-item active">
+          <span class="material-symbols-outlined">home</span>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="material-symbols-outlined">checkroom</span>
+          <span>Closet</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="material-symbols-outlined">explore</span>
+          <span>Discover</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <script>
+      const homeScreen = document.getElementById('home-screen');
+      const profileScreen = document.getElementById('profile-screen');
+      const analyzingScreen = document.getElementById('analyzing-screen');
+      const resultScreen = document.getElementById('result-screen');
+      const screens = [homeScreen, profileScreen, analyzingScreen, resultScreen];
+
+      function showScreen(name) {
+        screens.forEach((screen) => {
+          screen.classList.toggle('active', screen.id === name);
+        });
+      }
+
+      document.getElementById('find-style-btn').addEventListener('click', () => {
+        showScreen('profile-screen');
+      });
+
+      document.querySelectorAll('.back').forEach((button) => {
+        button.addEventListener('click', () => {
+          showScreen('home-screen');
+        });
+      });
+
+      document.getElementById('save-continue-btn').addEventListener('click', () => {
+        const height = document.getElementById('height').value.trim();
+        const weight = document.getElementById('weight').value.trim();
+
+        if (!height || !weight) {
+          alert('Please enter both height and weight before continuing.');
+          return;
+        }
+
+        showScreen('analyzing-screen');
+        const bar = document.getElementById('progress-bar');
+        let progress = 0;
+
+        const timer = setInterval(() => {
+          progress += 4;
+          bar.style.width = progress + '%';
+          if (progress >= 100) {
+            clearInterval(timer);
+            setTimeout(() => showScreen('result-screen'), 600);
+          }
+        }, 90);
+      });
+
+      document.getElementById('photo-upload').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const uploadBox = document.querySelector('.upload-box');
+
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          uploadBox.style.background = `linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.04)), url('${e.target.result}') center/cover no-repeat`;
+          uploadBox.style.borderColor = 'rgba(27,28,28,0.2)';
+        };
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
+</html>

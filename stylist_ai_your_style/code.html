@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Style Recommendation - Stylist AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "primary-container": "#1c1b1b",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-secondary-container": "#5f6161",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary-fixed": "#e5e2e1",
+                        "surface": "#fbf9f9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "surface-dim": "#dbdad9",
+                        "background": "#fbf9f9",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#735c00",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#5d5f5f",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#474746",
+                        "surface-container-high": "#e9e8e7",
+                        "on-surface-variant": "#444748",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "on-primary-container": "#858383",
+                        "surface-container-highest": "#e4e2e2",
+                        "inverse-surface": "#303031",
+                        "surface-bright": "#fbf9f9",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container-low": "#f5f3f3",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container": "#efeded",
+                        "tertiary-container": "#cca730",
+                        "secondary-container": "#dcdddd",
+                        "outline-variant": "#c4c7c7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display", "serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "button": ["Inter", "sans-serif"],
+                        "display-lg-mobile": ["Playfair Display", "serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-headline { font-family: 'Playfair Display', serif; }
+        /* Hide scrollbar for gallery but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col relative pb-32 md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 z-40 sticky bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+<button aria-label="Profile Menu" class="w-10 h-10 rounded-full overflow-hidden focus:outline-none hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a stylish user profile avatar with a clean, neutral background. Soft, high-key studio lighting emphasizing natural features. Minimalist, luxury editorial aesthetic with a slight cool tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMcYbZTnG7PxbKU0_msDo7R5SsmFFvw9Lu6IEZ8g2cqNys-n_d4SzWIH9eMMEwv5ObTdU1djBudUsJ-1eWwfdHSFm-OySOe2AorBhXIRGie9df_ymp08X1FXZKyh0EPqbXWqHsIf_3abQha26slogjNHSUhxIaEy26a36LGBH-otMJ9BxDxY2pRNXxw8kCroS3xXyDhXrnm6oAG8bx2bs2SdickT-Tum5TCWPFy_0lIhDnVGjJLTD3"/>
+</button>
+<div class="font-headline-md text-headline-md tracking-tighter text-primary dark:text-on-primary-fixed">STYLIST AI</div>
+<button aria-label="Settings" class="text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<!-- Header Section -->
+<section class="mb-16 md:mb-24 text-center md:text-left max-w-3xl">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">Your Style Signature</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Based on your recent aesthetic scan and precise body measurements, we have curated a selection of looks that define your unique sartorial identity.</p>
+</section>
+<!-- Style ID Card (Bento/Glassmorphism inspired) -->
+<section class="mb-section-gap">
+<div class="relative rounded-xl border border-outline-variant bg-surface-container-low overflow-hidden group hover:border-outline transition-colors duration-300 flex flex-col md:flex-row min-h-[300px]">
+<div class="w-full md:w-2/5 p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-outline-variant bg-surface">
+<div>
+<span class="inline-block px-3 py-1 border border-outline-variant rounded font-label-caps text-label-caps tracking-widest text-secondary uppercase mb-6">Style ID</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Classic Minimalist</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">An appreciation for clean lines, neutral palettes, and impeccable tailoring. Your wardrobe favors structured silhouettes and high-quality essential pieces that transcend fleeting trends.</p>
+</div>
+<div class="mt-8 flex gap-2 flex-wrap">
+<span class="px-3 py-1 text-xs border border-outline-variant font-label-caps uppercase text-secondary">Structured</span>
+<span class="px-3 py-1 text-xs border border-outline-variant font-label-caps uppercase text-secondary">Monochrome</span>
+<span class="px-3 py-1 text-xs border border-outline-variant font-label-caps uppercase text-secondary">Tailored</span>
+</div>
+</div>
+<div class="w-full md:w-3/5 relative min-h-[250px] md:min-h-full bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A minimalist architectural fashion flat lay featuring high-end classic minimalist clothing items—a crisp white button-down shirt, sharply tailored black trousers, and a sleek leather loafer. Arranged perfectly on a pristine, subtly textured light grey concrete surface. High-key, diffused natural lighting creating soft shadows. Editorial luxury aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSRlJ8UvAULHI90-KftYHAtWJ85RnE0ldF0tFK0pWPggFgjZV0p1xOooes6n9fl6ZJW2kHdzVe6MgfV_ZhbXttX3KrtbfqDhUZYJ5EmjYJnfqx7F1UuJm2rBW7hiDsGTAi4VDTJMlKBMM_l9hJ7n4oUjYKEMC9bWu3DekAB4Wr2cHePdAv7zWKbwyWW5gPaGo56ckMt9YFCV3ak-Qibt49E4ujYmj4IXIrsIjpOkk8Jjp-JN982mNA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent md:hidden"></div>
+</div>
+</div>
+</section>
+<!-- Curated Looks Gallery -->
+<section>
+<div class="flex justify-between items-end mb-8 border-b border-outline-variant pb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Curated Looks</h3>
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase hidden md:inline-block">Tailored for your measurements</span>
+</div>
+<!-- Scrollable Gallery -->
+<div class="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x snap-mandatory">
+<!-- Look Card 1 -->
+<div class="min-w-[85vw] md:min-w-[400px] snap-center flex-shrink-0 flex flex-col group border border-outline-variant rounded-lg bg-surface">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-t-lg bg-surface-container-high">
+<img alt="Look 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A full-length fashion editorial shot of an elegant individual wearing a classic minimalist outfit: a perfectly tailored camel coat over a black cashmere turtleneck and wide-leg trousers. Shot in a bright, modern studio with high-key lighting. The style is sophisticated, luxury, and understated. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Z4p6feMEBrKEWv_f1krBUJ8XSzQLfhlBqj5BBDJ6C3xEWpgtaLnDEfbFZFqA1YslVbbDA6dJqwfteSWWpq1OZ2bfasFz51wXmwsaw4m5aZCYhegV6dilJZOQ6pk8OXvUu8yPRomQRq5CiXKp2pYCtMGgJGMGJYoaMFbOccxDAMA03lJVnlwj6BhlZ2nXa6Tmg2RzHLIsdNMVOJWANFZo3gVBElO5QXCpkAGkfyYbRtDEelLbqzuT"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm border border-outline-variant px-3 py-1 rounded font-label-caps text-label-caps text-primary tracking-widest uppercase">98% Match</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">The Urban Monolith</h4>
+<div class="mt-4 pt-4 border-t border-outline-variant">
+<h5 class="font-label-caps text-label-caps text-secondary mb-2 tracking-widest uppercase">Why it works</h5>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The strong shoulder line balances your proportions perfectly, while the monochromatic base creates an unbroken vertical line that subtly elongates the silhouette.</p>
+</div>
+<button class="mt-6 w-full py-3 bg-primary text-on-primary font-button text-button hover:bg-surface-tint transition-colors uppercase tracking-wider">Save Look</button>
+</div>
+</div>
+<!-- Look Card 2 -->
+<div class="min-w-[85vw] md:min-w-[400px] snap-center flex-shrink-0 flex flex-col group border border-outline-variant rounded-lg bg-surface">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-t-lg bg-surface-container-high">
+<img alt="Look 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-fashion editorial image featuring a modern minimalist look: an oversized, crisp white poplin shirt half-tucked into structured, dark navy tailored shorts. Paired with minimalist leather sandals. The lighting is crisp and bright, highlighting the crisp textures of the fabric against a soft, light-grey studio backdrop. Luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBogCeXR8A2YYlLdP_5Q17ujJ6cM3N5UmY8hFVfZSEcO9vMPgvty0kpLyLNuxQzK2WwF3qqhn_JDbu1-iS7TM2jrZ1If6eX7QKptUqNbRA3l4aIGfgQA6TrmOqjwm-rioBAwhylBXEiFS32qhgErvyvWSEqJ9BMUOGOkVHAwrHxswY9JdfSeptCP53I03U9lJBL6l8-tB2bCgF2E_lv1zJO4DVmHibvpUVYjlaaZQW9DVIAbqyGc2wP"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm border border-outline-variant px-3 py-1 rounded font-label-caps text-label-caps text-primary tracking-widest uppercase">95% Match</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Architectural Ease</h4>
+<div class="mt-4 pt-4 border-t border-outline-variant">
+<h5 class="font-label-caps text-label-caps text-secondary mb-2 tracking-widest uppercase">Why it works</h5>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The oversized top provides contrast to the tailored lower half, highlighting the waist. The crisp poplin adds structural interest without overwhelming your frame.</p>
+</div>
+<button class="mt-6 w-full py-3 bg-surface border border-primary text-primary font-button text-button hover:bg-surface-container transition-colors uppercase tracking-wider">Save Look</button>
+</div>
+</div>
+<!-- Look Card 3 -->
+<div class="min-w-[85vw] md:min-w-[400px] snap-center flex-shrink-0 flex flex-col group border border-outline-variant rounded-lg bg-surface">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-t-lg bg-surface-container-high">
+<img alt="Look 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated evening minimalist look. A sleek, perfectly draped silk slip dress in deep charcoal grey, paired with a sharp, structured black blazer worn draped over the shoulders. Minimalist gold jewelry. Shot in a moody yet brightly lit editorial studio setting, emphasizing the luxurious sheen of the silk against the matte blazer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOkIzsf4WqtpZHOAFiTSeRTI8XJ1cmn7PcqM3c17LXwfDSnes6Gq0_lgoWazD8FG3-yZU2J8wJT9RuTzlyfOOPxrnQUT-TWFlzdfAXSRhhhpv-e8PFrjlC7Gjn_hOrC7-PQPLZ6Vi6f0nLlKLhqx0cc7TJrDZOND6wbkDObfyEMzt5H-nizYg0vWZ3TMzHbbWKd-mBCJkumQgy1NvZ_9p7r6qpTodaLNGZo4Sk3dSGbLiba3pbTquS"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm border border-outline-variant px-3 py-1 rounded font-label-caps text-label-caps text-primary tracking-widest uppercase">92% Match</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Elevated Evening</h4>
+<div class="mt-4 pt-4 border-t border-outline-variant">
+<h5 class="font-label-caps text-label-caps text-secondary mb-2 tracking-widest uppercase">Why it works</h5>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The bias-cut silk drapes elegantly over your natural curves, while the structured blazer provides an architectural counterpoint, anchoring the fluidity of the dress.</p>
+</div>
+<button class="mt-6 w-full py-3 bg-surface border border-primary text-primary font-button text-button hover:bg-surface-container transition-colors uppercase tracking-wider">Save Look</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 w-full bg-surface dark:bg-surface-dim px-4 pb-safe border-t border-outline-variant dark:border-outline flat no shadows md:hidden">
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed pt-2 hover:text-primary dark:hover:text-on-primary-fixed transition-colors active:opacity-70 transition-opacity w-1/4">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed pt-2 hover:text-primary dark:hover:text-on-primary-fixed transition-colors active:opacity-70 transition-opacity w-1/4">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="checkroom">checkroom</span>
+<span class="font-label-caps text-label-caps">CLOSET</span>
+</button>
+<!-- Active Tab -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-on-primary-fixed font-bold border-t-2 border-primary pt-2 hover:text-primary dark:hover:text-on-primary-fixed transition-colors active:opacity-70 transition-opacity w-1/4">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="explore">explore</span>
+<span class="font-label-caps text-label-caps">DISCOVER</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed pt-2 hover:text-primary dark:hover:text-on-primary-fixed transition-colors active:opacity-70 transition-opacity w-1/4">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</button>
+</nav>
+<!-- Desktop Navigation Drawer (Hidden on mobile) -->
+<aside class="hidden md:flex flex-col p-6 gap-unit bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed font-body-md text-body-md font-headline-lg text-headline-lg h-full w-80 rounded-r-none bg-surface-container-low dark:bg-surface-container-lowest shadow-sm fixed left-0 top-16 bottom-0 z-30 border-r border-outline-variant">
+<div class="mb-8 flex items-center gap-4 border-b border-outline-variant pb-6">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User's Portrait" class="w-full h-full object-cover" data-alt="User's Portrait profile photo in black and white minimalist style, bright lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYXFanl140WNlTXQ798rTWNM7szH2ay5daWck-cAI3SU483eFhMQFU5VMO2eo3cQbpZ_RC53bSreqoUeXc9WU6AmHJuOEJbYcr3egrKlMFm3S-rhHpjmg2xaoma-xRCrp19eV2Yb_11rPwmZKXmnEhOGMjm7ytQ87MlXQsoTZxpveeOyINkiFbpGX7rgYzSlBejkgZ0OZL10Bf9EC4dYfRL30GmJ9AiuOvkLoquysO17Xr9m0mBcwb"/>
+</div>
+<div class="left_align">
+<h3 class="font-headline-md text-headline-md text-on-surface text-sm font-semibold">Alex Grayson</h3>
+<p class="font-label-caps text-label-caps text-secondary text-xs mt-1">Classic Minimalist</p>
+<p class="font-label-caps text-label-caps text-tertiary-container text-xs mt-1">Premium Member</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="fingerprint">fingerprint</span>
+<span class="font-body-md text-body-md text-sm">My Style Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-body-md text-body-md text-sm">Saved Outfits</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md bg-secondary-container text-on-secondary-container font-medium hover:bg-surface-container-high transition-colors active:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+<span class="font-body-md text-body-md text-sm">Body Measurements</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-body-md text-body-md text-sm">Premium Access</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:bg-surface-container-highest transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md text-sm">Support</span>
+</a>
+</nav>
+</aside>
+<script>
+        // Simple scroll interaction for gallery items if needed
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = document.querySelector('.hide-scrollbar');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            if(gallery) {
+                gallery.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    gallery.classList.add('cursor-grabbing');
+                    startX = e.pageX - gallery.offsetLeft;
+                    scrollLeft = gallery.scrollLeft;
+                });
+                
+                gallery.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    gallery.classList.remove('cursor-grabbing');
+                });
+                
+                gallery.addEventListener('mouseup', () => {
+                    isDown = false;
+                    gallery.classList.remove('cursor-grabbing');
+                });
+                
+                gallery.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - gallery.offsetLeft;
+                    const walk = (x - startX) * 2; // Scroll-fast
+                    gallery.scrollLeft = scrollLeft - walk;
+                });
+            }
+        });
+    </script>
+</body></html>
