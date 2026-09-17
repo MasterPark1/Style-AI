@@ -57,6 +57,33 @@
         display: block;
       }
 
+      .language-tabs {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 10px 24px 0;
+      }
+
+      .language-tab {
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--soft);
+        padding: 5px 8px;
+        font: inherit;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+      }
+
+      .language-tab.active {
+        border-color: var(--line);
+        color: var(--ink);
+        background: var(--panel);
+      }
+
       .topbar {
         height: 68px;
         display: flex;
@@ -744,35 +771,39 @@
   </head>
   <body>
     <div class="app">
+      <nav class="language-tabs" aria-label="Language selection">
+        <button class="language-tab active" type="button" data-language="en">EN</button>
+        <button class="language-tab" type="button" data-language="ko">한국어</button>
+      </nav>
       <section id="home-screen" class="screen hero active">
         <header class="topbar">
-          <button class="icon-btn" aria-label="Menu">
+          <button class="icon-btn" aria-label="Menu" data-i18n-aria-label="menu">
             <span class="material-symbols-outlined" data-fallback="☰" aria-hidden="true">menu</span>
           </button>
           <div class="brand">STYLIST AI</div>
-          <button class="icon-btn" aria-label="Settings">
+          <button class="icon-btn" aria-label="Settings" data-i18n-aria-label="settings">
             <span class="material-symbols-outlined" data-fallback="⚙" aria-hidden="true">settings</span>
           </button>
         </header>
 
         <div class="hero-visual">
           <div class="hero-copy">
-            <div class="badge">Powered by AI</div>
-            <h1>Your Personal <span class="em">AI Stylist</span></h1>
-            <p class="lead">
+            <div class="badge" data-i18n="poweredByAi">Powered by AI</div>
+            <h1><span data-i18n="yourPersonal">Your Personal</span> <span class="em" data-i18n="aiStylist">AI Stylist</span></h1>
+            <p class="lead" data-i18n="heroLead">
               Discover a curated wardrobe tailored to your unique measurements,
               lifestyle, and aesthetic preferences. Minimalist luxury, elevated by
               artificial intelligence.
             </p>
             <button class="primary-btn" id="find-style-btn">
-              Find My Style <span class="button-arrow" aria-hidden="true">→</span>
+              <span data-i18n="findMyStyle">Find My Style</span> <span class="button-arrow" aria-hidden="true">→</span>
             </button>
           </div>
         </div>
 
         <div class="feature-box">
-          <h3 class="section-title">Curated Perfection</h3>
-          <p>Our AI analyzes thousands of designer collections to craft looks that align flawlessly with your profile.</p>
+          <h3 class="section-title" data-i18n="curatedPerfection">Curated Perfection</h3>
+          <p data-i18n="curatedDescription">Our AI analyzes thousands of designer collections to craft looks that align flawlessly with your profile.</p>
 
           <div class="feature-image"></div>
 
@@ -780,19 +811,19 @@
             <div class="mini-card">
               <div class="head">
                 <span class="material-symbols-outlined" data-fallback="↕" aria-hidden="true">straighten</span>
-                <span class="tag">Precise</span>
+                <span class="tag" data-i18n="precise">Precise</span>
               </div>
-              <h4>Perfect Fit</h4>
-              <p>3D body scanning technology ensures every recommended piece flatters your exact silhouette.</p>
+              <h4 data-i18n="perfectFit">Perfect Fit</h4>
+              <p data-i18n="perfectFitDescription">3D body scanning technology ensures every recommended piece flatters your exact silhouette.</p>
             </div>
 
             <div class="mini-card">
               <div class="head">
                 <span class="material-symbols-outlined" data-fallback="✦" aria-hidden="true">auto_awesome</span>
-                <span class="tag">Daily</span>
+                <span class="tag" data-i18n="daily">Daily</span>
               </div>
-              <h4>Daily Brief</h4>
-              <p>Wake up to customized outfit suggestions based on your schedule, location, and the weather.</p>
+              <h4 data-i18n="dailyBrief">Daily Brief</h4>
+              <p data-i18n="dailyBriefDescription">Wake up to customized outfit suggestions based on your schedule, location, and the weather.</p>
             </div>
           </div>
 
@@ -812,22 +843,22 @@
 
       <section id="profile-screen" class="screen">
         <header class="profile-header">
-          <button class="icon-btn back" aria-label="Back">
+          <button class="icon-btn back" aria-label="Back" data-i18n-aria-label="back">
             <span class="back-arrow" aria-hidden="true">←</span>
           </button>
           <div class="profile-brand">STYLIST AI</div>
           <div style="width: 32px;"></div>
         </header>
 
-        <h1 class="profile-title">Define Your Silhouette</h1>
-        <p class="profile-copy">
+        <h1 class="profile-title" data-i18n="defineSilhouette">Define Your Silhouette</h1>
+        <p class="profile-copy" data-i18n="profileCopy">
           To curate pieces that drape perfectly and complement your unique
           proportions, we require a few foundational measurements. Accuracy
           ensures a flawless fit.
         </p>
 
         <div class="field-group">
-          <label class="label" for="height">Height</label>
+          <label class="label" for="height" data-i18n="height">Height</label>
           <div class="measure-row">
             <input id="height" type="number" placeholder="0" min="0" />
             <span class="unit">cm</span>
@@ -835,7 +866,7 @@
         </div>
 
         <div class="field-group">
-          <label class="label" for="weight">Weight</label>
+          <label class="label" for="weight" data-i18n="weight">Weight</label>
           <div class="measure-row">
             <input id="weight" type="number" placeholder="0" min="0" />
             <span class="unit">kg</span>
@@ -843,19 +874,19 @@
         </div>
 
         <div class="field-group">
-          <label class="label">Reference Image</label>
+          <label class="label" data-i18n="referenceImage">Reference Image</label>
           <label class="upload-box" for="photo-upload">
             <div>
               <div class="material-symbols-outlined camera" data-fallback="📷" aria-hidden="true">photo_camera</div>
-              <h3>Upload a Full-Body Portrait</h3>
-              <p>Drag and drop your image here, or click to browse. Neutral background preferred.</p>
+              <h3 data-i18n="uploadPortrait">Upload a Full-Body Portrait</h3>
+              <p data-i18n="uploadDescription">Drag and drop your image here, or click to browse. Neutral background preferred.</p>
             </div>
             <input id="photo-upload" type="file" accept="image/*" style="display:none;" />
           </label>
         </div>
 
         <div class="action-row">
-          <button class="save-btn" id="save-continue-btn">Save &amp; Continue</button>
+          <button class="save-btn" id="save-continue-btn" data-i18n="saveContinue">Save &amp; Continue</button>
         </div>
 
       </section>
@@ -869,8 +900,8 @@
           <div class="scan-line"></div>
         </div>
 
-        <h2 class="analysis-title">Analyzing your unique silhouette...</h2>
-        <div class="analysis-sub">Curating high-fashion matches...</div>
+        <h2 class="analysis-title" data-i18n="analyzing">Analyzing your unique silhouette...</h2>
+        <div class="analysis-sub" data-i18n="curatingMatches">Curating high-fashion matches...</div>
 
         <div class="progress">
           <div class="progress-bar" id="progress-bar"></div>
@@ -882,74 +913,74 @@
         <header class="header-row">
           <div class="profile-bubble"></div>
           <div class="brand" style="font-size: 2.25rem;">STYLIST AI</div>
-          <button class="icon-btn" aria-label="Settings">
+          <button class="icon-btn" aria-label="Settings" data-i18n-aria-label="settings">
             <span class="material-symbols-outlined" data-fallback="⚙" aria-hidden="true">settings</span>
           </button>
         </header>
 
-        <h1 class="result-title">Your Style Signature</h1>
-        <p class="result-copy">
+        <h1 class="result-title" data-i18n="styleSignature">Your Style Signature</h1>
+        <p class="result-copy" data-i18n="resultCopy">
           Based on your recent aesthetic scan and precise body measurements, we
           have curated a selection of looks that define your unique sartorial identity.
         </p>
 
         <div class="style-panel">
-          <span class="tagline">Style ID</span>
-          <h3>Classic Minimalist</h3>
-          <p>
+          <span class="tagline" data-i18n="styleId">Style ID</span>
+          <h3 data-i18n="classicMinimalist">Classic Minimalist</h3>
+          <p data-i18n="styleDescription">
             An appreciation for clean lines, neutral palettes, and impeccable tailoring.
             Your wardrobe favors structured silhouettes and high-quality essential pieces
             that transcend fleeting trends.
           </p>
           <div class="chip-group">
-            <span class="chip">Structured</span>
-            <span class="chip">Monochrome</span>
-            <span class="chip">Tailored</span>
+            <span class="chip" data-i18n="structured">Structured</span>
+            <span class="chip" data-i18n="monochrome">Monochrome</span>
+            <span class="chip" data-i18n="tailored">Tailored</span>
           </div>
         </div>
 
         <div class="look-card">
           <div class="look-visual"></div>
           <div class="look-content">
-            <h4>The Urban Monolith</h4>
-            <div class="subhead">Why it works</div>
-            <p>
+            <h4 data-i18n="urbanMonolith">The Urban Monolith</h4>
+            <div class="subhead" data-i18n="whyItWorks">Why it works</div>
+            <p data-i18n="lookDescription">
               The strong shoulder line balances your proportions perfectly, while the
               monochromatic base creates an unbroken vertical line that subtly elongates the silhouette.
             </p>
-            <button class="save-look">Save Look</button>
+            <button class="save-look" data-i18n="saveLook">Save Look</button>
           </div>
         </div>
 
         <div class="result-share">
           <button class="share-toggle" id="share-toggle" type="button" aria-expanded="false" aria-controls="share-menu">
-            Share
+            <span data-i18n="share">Share</span>
           </button>
           <div class="share-menu" id="share-menu" role="menu">
-            <button class="share-option" id="kakao-share" type="button" role="menuitem">카카오</button>
-            <button class="share-option" id="native-share" type="button" role="menuitem">메시지 (SNS)</button>
-            <button class="share-option" id="copy-link" type="button" role="menuitem">링크 복사</button>
+            <button class="share-option" id="kakao-share" type="button" role="menuitem" data-i18n="kakao">Kakao</button>
+            <button class="share-option" id="native-share" type="button" role="menuitem" data-i18n="messageShare">Message (SNS)</button>
+            <button class="share-option" id="copy-link" type="button" role="menuitem" data-i18n="copyLink">Copy Link</button>
           </div>
         </div>
 
       </section>
 
-      <nav class="bottom-nav" aria-label="Main navigation">
+      <nav class="bottom-nav" aria-label="Main navigation" data-i18n-aria-label="mainNavigation">
         <a href="#" class="nav-item active">
           <span class="material-symbols-outlined" data-fallback="⌂" aria-hidden="true">home</span>
-          <span>Home</span>
+          <span data-i18n="home">Home</span>
         </a>
         <a href="#" class="nav-item">
           <span class="material-symbols-outlined" data-fallback="◇" aria-hidden="true">checkroom</span>
-          <span>Closet</span>
+          <span data-i18n="closet">Closet</span>
         </a>
         <a href="#" class="nav-item">
           <span class="material-symbols-outlined" data-fallback="◉" aria-hidden="true">explore</span>
-          <span>Discover</span>
+          <span data-i18n="discover">Discover</span>
         </a>
         <a href="#" class="nav-item">
           <span class="material-symbols-outlined" data-fallback="○" aria-hidden="true">person</span>
-          <span>Profile</span>
+          <span data-i18n="profile">Profile</span>
         </a>
       </nav>
     </div>
@@ -963,6 +994,135 @@
       const resultScreen = document.getElementById('result-screen');
       const screens = [homeScreen, profileScreen, analyzingScreen, resultScreen];
       const shareSection = document.querySelector('.share-section');
+      let currentLanguage = 'en';
+
+      const translations = {
+        en: {
+          poweredByAi: 'Powered by AI',
+          yourPersonal: 'Your Personal',
+          aiStylist: 'AI Stylist',
+          heroLead: 'Discover a curated wardrobe tailored to your unique measurements, lifestyle, and aesthetic preferences. Minimalist luxury, elevated by artificial intelligence.',
+          findMyStyle: 'Find My Style',
+          curatedPerfection: 'Curated Perfection',
+          curatedDescription: 'Our AI analyzes thousands of designer collections to craft looks that align flawlessly with your profile.',
+          precise: 'Precise',
+          perfectFit: 'Perfect Fit',
+          perfectFitDescription: '3D body scanning technology ensures every recommended piece flatters your exact silhouette.',
+          daily: 'Daily',
+          dailyBrief: 'Daily Brief',
+          dailyBriefDescription: 'Wake up to customized outfit suggestions based on your schedule, location, and the weather.',
+          defineSilhouette: 'Define Your Silhouette',
+          profileCopy: 'To curate pieces that drape perfectly and complement your unique proportions, we require a few foundational measurements. Accuracy ensures a flawless fit.',
+          height: 'Height',
+          weight: 'Weight',
+          referenceImage: 'Reference Image',
+          uploadPortrait: 'Upload a Full-Body Portrait',
+          uploadDescription: 'Drag and drop your image here, or click to browse. Neutral background preferred.',
+          saveContinue: 'Save & Continue',
+          analyzing: 'Analyzing your unique silhouette...',
+          curatingMatches: 'Curating high-fashion matches...',
+          styleSignature: 'Your Style Signature',
+          resultCopy: 'Based on your recent aesthetic scan and precise body measurements, we have curated a selection of looks that define your unique sartorial identity.',
+          styleId: 'Style ID',
+          classicMinimalist: 'Classic Minimalist',
+          styleDescription: 'An appreciation for clean lines, neutral palettes, and impeccable tailoring. Your wardrobe favors structured silhouettes and high-quality essential pieces that transcend fleeting trends.',
+          structured: 'Structured',
+          monochrome: 'Monochrome',
+          tailored: 'Tailored',
+          urbanMonolith: 'The Urban Monolith',
+          whyItWorks: 'Why it works',
+          lookDescription: 'The strong shoulder line balances your proportions perfectly, while the monochromatic base creates an unbroken vertical line that subtly elongates the silhouette.',
+          saveLook: 'Save Look',
+          share: 'Share',
+          kakao: 'Kakao',
+          messageShare: 'Message (SNS)',
+          copyLink: 'Copy Link',
+          home: 'Home',
+          closet: 'Closet',
+          discover: 'Discover',
+          profile: 'Profile',
+          back: 'Back',
+          menu: 'Menu',
+          settings: 'Settings',
+          mainNavigation: 'Main navigation',
+          missingMeasurements: 'Please enter both height and weight before continuing.',
+          shareFailed: 'Unable to start sharing.',
+          linkCopied: 'Link copied.',
+          copyFailed: 'Unable to copy the link.'
+        },
+        ko: {
+          poweredByAi: 'AI 기반 서비스',
+          yourPersonal: '나만의',
+          aiStylist: 'AI 스타일리스트',
+          heroLead: '나만의 신체 치수와 라이프스타일, 미적 취향에 맞춘 스타일을 만나보세요. 인공지능으로 완성하는 미니멀 럭셔리.',
+          findMyStyle: '내 스타일 찾기',
+          curatedPerfection: '완벽한 큐레이션',
+          curatedDescription: 'AI가 수천 개의 디자이너 컬렉션을 분석해 회원님의 프로필에 꼭 맞는 룩을 제안합니다.',
+          precise: '정밀하게',
+          perfectFit: '완벽한 핏',
+          perfectFitDescription: '3D 신체 스캔 기술로 나의 실루엣에 꼭 맞는 아이템을 추천합니다.',
+          daily: '매일',
+          dailyBrief: '데일리 브리핑',
+          dailyBriefDescription: '일정과 위치, 날씨를 반영한 맞춤형 코디를 매일 만나보세요.',
+          defineSilhouette: '나의 실루엣 설정',
+          profileCopy: '체형에 완벽하게 어울리는 아이템을 큐레이션하기 위해 기본 신체 치수가 필요합니다. 정확한 정보를 입력할수록 더 완벽한 핏을 추천해 드립니다.',
+          height: '키',
+          weight: '몸무게',
+          referenceImage: '참고 이미지',
+          uploadPortrait: '전신 사진 업로드',
+          uploadDescription: '이미지를 이곳으로 끌어오거나 눌러서 선택해 주세요. 배경이 깔끔한 사진을 권장합니다.',
+          saveContinue: '저장하고 계속하기',
+          analyzing: '나만의 실루엣을 분석하고 있습니다...',
+          curatingMatches: '하이패션 스타일을 큐레이션하는 중입니다...',
+          styleSignature: '나의 스타일 시그니처',
+          resultCopy: '최근 스타일 분석과 정확한 신체 치수를 바탕으로 나만의 개성을 보여주는 룩을 큐레이션했습니다.',
+          styleId: '스타일 ID',
+          classicMinimalist: '클래식 미니멀리스트',
+          styleDescription: '깔끔한 선과 뉴트럴 팔레트, 완벽한 테일러링을 선호하는 스타일입니다. 유행을 타지 않는 구조적인 실루엣과 고품질의 기본 아이템을 중심으로 옷장을 구성합니다.',
+          structured: '구조적인',
+          monochrome: '모노크롬',
+          tailored: '테일러드',
+          urbanMonolith: '어반 모놀리스',
+          whyItWorks: '스타일이 어울리는 이유',
+          lookDescription: '탄탄한 어깨선이 체형의 균형을 잡아주고, 모노크롬 베이스가 끊김 없는 세로선을 만들어 실루엣을 더욱 길어 보이게 합니다.',
+          saveLook: '룩 저장',
+          share: '공유',
+          kakao: '카카오',
+          messageShare: '메시지 (SNS)',
+          copyLink: '링크 복사',
+          home: '홈',
+          closet: '옷장',
+          discover: '발견',
+          profile: '프로필',
+          back: '뒤로가기',
+          menu: '메뉴',
+          settings: '설정',
+          mainNavigation: '주요 메뉴',
+          missingMeasurements: '키와 몸무게를 모두 입력한 후 계속해 주세요.',
+          shareFailed: '공유를 시작할 수 없습니다.',
+          linkCopied: '링크가 복사되었습니다.',
+          copyFailed: '링크 복사에 실패했습니다.'
+        }
+      };
+
+      function applyLanguage(language) {
+        currentLanguage = language;
+        const dictionary = translations[language];
+        document.documentElement.lang = language;
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          element.textContent = dictionary[element.dataset.i18n];
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+          element.setAttribute('aria-label', dictionary[element.dataset.i18nAriaLabel]);
+        });
+        document.querySelectorAll('.language-tab').forEach((tab) => {
+          tab.classList.toggle('active', tab.dataset.language === language);
+        });
+      }
+
+      document.querySelectorAll('.language-tab').forEach((tab) => {
+        tab.addEventListener('click', () => applyLanguage(tab.dataset.language));
+      });
 
       function showScreen(name) {
         screens.forEach((screen) => {
@@ -986,7 +1146,7 @@
         const weight = document.getElementById('weight').value.trim();
 
         if (!height || !weight) {
-          alert('Please enter both height and weight before continuing.');
+          alert(translations[currentLanguage].missingMeasurements);
           return;
         }
 
@@ -1051,7 +1211,7 @@
           }
         } catch (error) {
           if (error.name !== 'AbortError') {
-            alert('공유를 시작할 수 없습니다.');
+            alert(translations[currentLanguage].shareFailed);
           }
         }
         closeShareMenu();
@@ -1060,9 +1220,9 @@
       document.getElementById('copy-link').addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(shareData.url);
-          alert('링크가 복사되었습니다.');
+          alert(translations[currentLanguage].linkCopied);
         } catch (error) {
-          alert('링크 복사에 실패했습니다.');
+          alert(translations[currentLanguage].copyFailed);
         }
         closeShareMenu();
       });
