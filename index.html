@@ -425,17 +425,18 @@
       }
 
       .upload-box .camera {
-        font-size: 54px;
+        font-size: 0;
         color: rgba(27, 28, 28, 0.45);
         margin-bottom: 18px;
       }
 
       .upload-box .camera::before {
-        font-size: 54px;
+        font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+        font-size: 38px;
       }
 
       .upload-box h3 {
-        font-size: clamp(2.2rem, 7vw, 3rem);
+        font-size: clamp(1.54rem, 4.9vw, 2.1rem);
         margin: 0 0 12px;
       }
 
@@ -792,7 +793,7 @@
           <label class="label">Reference Image</label>
           <label class="upload-box" for="photo-upload">
             <div>
-              <div class="material-symbols-outlined camera" data-fallback="▣" aria-hidden="true">photo_camera</div>
+              <div class="material-symbols-outlined camera" data-fallback="📷" aria-hidden="true">photo_camera</div>
               <h3>Upload a Full-Body Portrait</h3>
               <p>Drag and drop your image here, or click to browse. Neutral background preferred.</p>
             </div>
