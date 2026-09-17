@@ -1,0 +1,9 @@
+{
+  "name": "stylist-ai-cloudflare",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "deploy": "npx wrangler pages deploy . --project-name stylist-ai --branch main"
+  }
+}

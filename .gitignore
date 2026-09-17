@@ -1,0 +1,4 @@
+node_modules/
+.npm/
+wrangler.log
+.DS_Store
