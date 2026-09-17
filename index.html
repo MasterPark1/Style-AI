@@ -172,22 +172,34 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: var(--ink);
+        gap: 12px;
+        background: linear-gradient(180deg, #1d1d1d 0%, #050505 100%);
         color: #fff;
-        border: none;
+        border: 1px solid rgba(27, 28, 28, 0.9);
         padding: 18px 26px;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         cursor: pointer;
         margin-top: 26px;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
       }
 
-      .primary-btn:hover { opacity: 0.97; }
+      .primary-btn:hover {
+        opacity: 0.98;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+      }
       .primary-btn:active { transform: scale(0.99); }
+
+      .button-arrow {
+        font-size: 28px;
+        line-height: 1;
+        display: inline-block;
+        transform: translateY(-1px);
+        font-weight: 400;
+      }
 
       .section-title {
         font-size: clamp(2.6rem, 9vw, 4.2rem);
