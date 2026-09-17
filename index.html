@@ -785,17 +785,6 @@
           <button class="save-btn" id="save-continue-btn">Save &amp; Continue</button>
         </div>
 
-        <div class="share-section" aria-label="Share this style">
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-            <a class="a2a_button_facebook"></a>
-            <a class="a2a_button_email"></a>
-            <a class="a2a_button_google_gmail"></a>
-            <a class="a2a_button_twitter"></a>
-            <a class="a2a_button_x"></a>
-            <a class="a2a_button_sms"></a>
-          </div>
-        </div>
       </section>
 
       <section id="analyzing-screen" class="screen analysis">
@@ -814,17 +803,6 @@
           <div class="progress-bar" id="progress-bar"></div>
         </div>
 
-        <div class="share-section" aria-label="Share this style">
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-            <a class="a2a_button_facebook"></a>
-            <a class="a2a_button_email"></a>
-            <a class="a2a_button_google_gmail"></a>
-            <a class="a2a_button_twitter"></a>
-            <a class="a2a_button_x"></a>
-            <a class="a2a_button_sms"></a>
-          </div>
-        </div>
       </section>
 
       <section id="result-screen" class="screen result">
@@ -870,17 +848,6 @@
           </div>
         </div>
 
-        <div class="share-section" aria-label="Share this style">
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-            <a class="a2a_button_facebook"></a>
-            <a class="a2a_button_email"></a>
-            <a class="a2a_button_google_gmail"></a>
-            <a class="a2a_button_twitter"></a>
-            <a class="a2a_button_x"></a>
-            <a class="a2a_button_sms"></a>
-          </div>
-        </div>
       </section>
 
       <nav class="bottom-nav" aria-label="Main navigation">
@@ -911,11 +878,13 @@
       const analyzingScreen = document.getElementById('analyzing-screen');
       const resultScreen = document.getElementById('result-screen');
       const screens = [homeScreen, profileScreen, analyzingScreen, resultScreen];
+      const shareSection = document.querySelector('.share-section');
 
       function showScreen(name) {
         screens.forEach((screen) => {
           screen.classList.toggle('active', screen.id === name);
         });
+        document.getElementById(name).appendChild(shareSection);
       }
 
       document.getElementById('find-style-btn').addEventListener('click', () => {
