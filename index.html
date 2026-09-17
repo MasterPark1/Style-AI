@@ -660,6 +660,59 @@
         margin: 28px 0 20px;
       }
 
+      .result-share {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        margin: 24px 0 20px;
+      }
+
+      .share-toggle {
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: #fff;
+        padding: 11px 16px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .share-menu {
+        position: absolute;
+        right: 0;
+        bottom: calc(100% + 8px);
+        display: none;
+        min-width: 160px;
+        padding: 6px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        box-shadow: 0 8px 20px var(--shadow);
+        z-index: 5;
+      }
+
+      .share-menu.open {
+        display: grid;
+        gap: 2px;
+      }
+
+      .share-option {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        padding: 10px 12px;
+        text-align: left;
+        font: inherit;
+        font-size: 0.78rem;
+        cursor: pointer;
+      }
+
+      .share-option:hover,
+      .share-option:focus-visible {
+        background: var(--panel);
+        outline: none;
+      }
+
       .result .bottom-nav {
         display: grid;
       }
@@ -868,6 +921,17 @@
           </div>
         </div>
 
+        <div class="result-share">
+          <button class="share-toggle" id="share-toggle" type="button" aria-expanded="false" aria-controls="share-menu">
+            Share
+          </button>
+          <div class="share-menu" id="share-menu" role="menu">
+            <button class="share-option" id="kakao-share" type="button" role="menuitem">카카오</button>
+            <button class="share-option" id="native-share" type="button" role="menuitem">메시지 (SNS)</button>
+            <button class="share-option" id="copy-link" type="button" role="menuitem">링크 복사</button>
+          </div>
+        </div>
+
       </section>
 
       <nav class="bottom-nav" aria-label="Main navigation">
@@ -952,6 +1016,55 @@
           uploadBox.style.borderColor = 'rgba(27,28,28,0.2)';
         };
         reader.readAsDataURL(file);
+      });
+
+      const shareToggle = document.getElementById('share-toggle');
+      const shareMenu = document.getElementById('share-menu');
+      const shareData = {
+        title: 'My Style Signature - STYLIST AI',
+        text: 'Discover my personal style signature with STYLIST AI.',
+        url: window.location.href
+      };
+
+      function closeShareMenu() {
+        shareMenu.classList.remove('open');
+        shareToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      shareToggle.addEventListener('click', () => {
+        const isOpen = shareMenu.classList.toggle('open');
+        shareToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.getElementById('kakao-share').addEventListener('click', () => {
+        const kakaoUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(shareData.url)}`;
+        window.open(kakaoUrl, 'kakao-share', 'width=480,height=640,noopener,noreferrer');
+        closeShareMenu();
+      });
+
+      document.getElementById('native-share').addEventListener('click', async () => {
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+          } else {
+            window.location.href = `sms:?&body=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`;
+          }
+        } catch (error) {
+          if (error.name !== 'AbortError') {
+            alert('공유를 시작할 수 없습니다.');
+          }
+        }
+        closeShareMenu();
+      });
+
+      document.getElementById('copy-link').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          alert('링크가 복사되었습니다.');
+        } catch (error) {
+          alert('링크 복사에 실패했습니다.');
+        }
+        closeShareMenu();
       });
     </script>
   </body>
